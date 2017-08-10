@@ -37,18 +37,20 @@ static NSString *kJsonExtentsion = @"json";
     __weak typeof(self)weakSelf = self;
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         if (weakSelf.cities.count == 0){
-        NSMutableArray<PSCity*> *cities = [NSMutableArray new];
-        NSData *jsonData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:kJsonFile withExtension:kJsonExtentsion]];
-        NSError *error;
-        NSArray *citiesJsonObjects = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
-  
-        for (NSDictionary *cityJson in citiesJsonObjects){
-            PSCity *city = [PSCity fromJson:cityJson];
-            if (city){
-                [cities addObject:city];
+            NSMutableArray<PSCity*> *cities = [NSMutableArray new];
+            NSData *jsonData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:kJsonFile withExtension:kJsonExtentsion]];
+            NSError *error;
+            NSArray *citiesJsonObjects = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
+            @autoreleasepool {
+                for (NSDictionary *cityJson in citiesJsonObjects){
+                    PSCity *city = [PSCity fromJson:cityJson];
+                    if (city){
+                        [cities addObject:city];
+                    }
+                }
+                
+                weakSelf.cities = (NSArray*)cities;
             }
-        }
-        weakSelf.cities = (NSArray*)cities;
             if (error){
                 success(NO);
             } else {
@@ -76,19 +78,23 @@ static NSString *kJsonExtentsion = @"json";
             NSSortDescriptor *citySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"searchableName" ascending:YES];
             NSSortDescriptor *countrySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"searchableCountry" ascending:YES];
             weakSelf.filteredCities  = [weakSelf.filteredCities sortedArrayUsingDescriptors:@[citySortDescriptor, countrySortDescriptor]];
+            weakSelf.currentBatch = 0;
             completion([weakSelf nextBatch]);
         }
     }];
 }
 - (NSArray<PSCity*>*)nextBatch{
-    if (self.batchSize > 0 && self.currentBatch > -1 && self.filteredCities.count > 0){
+    NSArray *theBatch;
+    if (self.batchSize > 0 && self.currentBatch > -1 && self.filteredCities.count > self.batchSize){
         self.currentBatch++;
         NSInteger leftOverItems = self.filteredCities.count - self.currentBatch * self.batchSize;
         NSInteger batchEnd = leftOverItems > self.batchSize ? self.batchSize : leftOverItems;
-        return [self.filteredCities subarrayWithRange:NSMakeRange(self.currentBatch * self.batchSize, batchEnd)];
+        theBatch = [self.filteredCities subarrayWithRange:NSMakeRange(self.currentBatch * self.batchSize, batchEnd)];
         
     } else {
-        return self.filteredCities;
+        theBatch = self.filteredCities;
     }
+    self.filteredCities = nil;
+    return theBatch;
 }
 @end
