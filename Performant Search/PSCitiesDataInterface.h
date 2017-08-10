@@ -10,4 +10,5 @@
 #import "PSCity.h"
 @interface PSCitiesDataInterface : NSObject
 - (NSArray<PSCity*>*)fetchCitiesFromJson;
+- (void)fetchCitiesFromJsonWithCompletion:(void(^)(NSArray<PSCity*>*))completion;
 @end

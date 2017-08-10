@@ -29,4 +29,29 @@ static NSString *kJsonExtentsion = @"json";
     
     return [cities copy];
 }
+- (void)fetchCitiesFromJsonWithCompletion:(void(^)(NSArray<PSCity*>*))completion{
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        NSMutableArray<PSCity*> *cities = [NSMutableArray new];
+        NSData *jsonData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:kJsonFile withExtension:kJsonExtentsion]];
+        NSError *error;
+        NSArray *citiesJsonObjects = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
+        int lastBatch = citiesJsonObjects.count % 50;
+        int currentBatch = 0;
+        int batchSize = 50;
+        long maxDivisor = citiesJsonObjects.count / batchSize;
+        for (NSDictionary *cityJson in citiesJsonObjects){
+            PSCity *city = [PSCity fromJson:cityJson];
+            if (city){
+                [cities addObject:city];
+                if (citiesJsonObjects.count < batchSize || cities.count % batchSize == 0 || (currentBatch == maxDivisor &&  cities.count % batchSize == lastBatch)){
+                    completion([cities copy]);
+                    currentBatch++;
+                    [cities removeAllObjects];
+                    NSLog(@"Current Batch:%d", currentBatch);
+                }
+            }
+        }
+        cities = nil;
+    });
+}
 @end
