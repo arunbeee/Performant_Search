@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class CLLocation;
 
-@interface DetailViewController : UIViewController
+@interface PSMapViewController : UIViewController
 
 @property (strong, nonatomic) CLLocation *location;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;

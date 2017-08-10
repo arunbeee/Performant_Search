@@ -6,14 +6,14 @@
 //  Copyright © 2017 Zedomo. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "PSMapViewController.h"
 #import <MapKit/MapKit.h>
-@interface DetailViewController ()
+@interface PSMapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
-@implementation DetailViewController
+@implementation PSMapViewController
 
 - (void)configureView {
     // Update the user interface for the detail item.

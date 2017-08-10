@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		25EB10DE1F3C90E700757DA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EB10DD1F3C90E700757DA4 /* main.m */; };
 		25EB10E11F3C90E700757DA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EB10E01F3C90E700757DA4 /* AppDelegate.m */; };
-		25EB10E41F3C90E800757DA4 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EB10E31F3C90E800757DA4 /* MasterViewController.m */; };
-		25EB10E71F3C90E800757DA4 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EB10E61F3C90E800757DA4 /* DetailViewController.m */; };
+		25EB10E41F3C90E800757DA4 /* PSCitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EB10E31F3C90E800757DA4 /* PSCitiesViewController.m */; };
+		25EB10E71F3C90E800757DA4 /* PSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EB10E61F3C90E800757DA4 /* PSMapViewController.m */; };
 		25EB10EA1F3C90E800757DA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25EB10E81F3C90E800757DA4 /* Main.storyboard */; };
 		25EB10EC1F3C90E800757DA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25EB10EB1F3C90E800757DA4 /* Assets.xcassets */; };
 		25EB10EF1F3C90E800757DA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25EB10ED1F3C90E800757DA4 /* LaunchScreen.storyboard */; };
@@ -25,10 +25,10 @@
 		25EB10DD1F3C90E700757DA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		25EB10DF1F3C90E700757DA4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		25EB10E01F3C90E700757DA4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		25EB10E21F3C90E700757DA4 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		25EB10E31F3C90E800757DA4 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		25EB10E51F3C90E800757DA4 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		25EB10E61F3C90E800757DA4 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		25EB10E21F3C90E700757DA4 /* PSCitiesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSCitiesViewController.h; sourceTree = "<group>"; };
+		25EB10E31F3C90E800757DA4 /* PSCitiesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSCitiesViewController.m; sourceTree = "<group>"; };
+		25EB10E51F3C90E800757DA4 /* PSMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSMapViewController.h; sourceTree = "<group>"; };
+		25EB10E61F3C90E800757DA4 /* PSMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSMapViewController.m; sourceTree = "<group>"; };
 		25EB10E91F3C90E800757DA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		25EB10EB1F3C90E800757DA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25EB10EE1F3C90E800757DA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -75,19 +75,13 @@
 			children = (
 				25EB10DF1F3C90E700757DA4 /* AppDelegate.h */,
 				25EB10E01F3C90E700757DA4 /* AppDelegate.m */,
-				25EB10E21F3C90E700757DA4 /* MasterViewController.h */,
-				25EB10E31F3C90E800757DA4 /* MasterViewController.m */,
-				25EB10E51F3C90E800757DA4 /* DetailViewController.h */,
-				25EB10E61F3C90E800757DA4 /* DetailViewController.m */,
+				25EB11041F3CD7F000757DA4 /* City */,
+				25EB11051F3CD7FB00757DA4 /* Map */,
 				25EB10E81F3C90E800757DA4 /* Main.storyboard */,
 				25EB10EB1F3C90E800757DA4 /* Assets.xcassets */,
 				25EB10ED1F3C90E800757DA4 /* LaunchScreen.storyboard */,
 				25EB10F01F3C90E800757DA4 /* Info.plist */,
 				25EB10DC1F3C90E700757DA4 /* Supporting Files */,
-				25EB10F91F3C930C00757DA4 /* PSCity.h */,
-				25EB10FA1F3C930C00757DA4 /* PSCity.m */,
-				25EB10FF1F3C989300757DA4 /* PSCitiesDataInterface.h */,
-				25EB11001F3C989300757DA4 /* PSCitiesDataInterface.m */,
 			);
 			path = "Performant Search";
 			sourceTree = "<group>";
@@ -107,6 +101,52 @@
 				25EB10FD1F3C938D00757DA4 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		25EB11041F3CD7F000757DA4 /* City */ = {
+			isa = PBXGroup;
+			children = (
+				25EB11061F3CD82600757DA4 /* Models */,
+				25EB11071F3CD82D00757DA4 /* Data Interfaces */,
+				25EB11081F3CD83900757DA4 /* ViewControllers */,
+			);
+			name = City;
+			sourceTree = "<group>";
+		};
+		25EB11051F3CD7FB00757DA4 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				25EB10E51F3C90E800757DA4 /* PSMapViewController.h */,
+				25EB10E61F3C90E800757DA4 /* PSMapViewController.m */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		25EB11061F3CD82600757DA4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				25EB10F91F3C930C00757DA4 /* PSCity.h */,
+				25EB10FA1F3C930C00757DA4 /* PSCity.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		25EB11071F3CD82D00757DA4 /* Data Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				25EB10FF1F3C989300757DA4 /* PSCitiesDataInterface.h */,
+				25EB11001F3C989300757DA4 /* PSCitiesDataInterface.m */,
+			);
+			name = "Data Interfaces";
+			sourceTree = "<group>";
+		};
+		25EB11081F3CD83900757DA4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				25EB10E21F3C90E700757DA4 /* PSCitiesViewController.h */,
+				25EB10E31F3C90E800757DA4 /* PSCitiesViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,10 +224,10 @@
 			files = (
 				25EB10FB1F3C930C00757DA4 /* PSCity.m in Sources */,
 				25EB10E11F3C90E700757DA4 /* AppDelegate.m in Sources */,
-				25EB10E41F3C90E800757DA4 /* MasterViewController.m in Sources */,
+				25EB10E41F3C90E800757DA4 /* PSCitiesViewController.m in Sources */,
 				25EB11011F3C989300757DA4 /* PSCitiesDataInterface.m in Sources */,
 				25EB10DE1F3C90E700757DA4 /* main.m in Sources */,
-				25EB10E71F3C90E800757DA4 /* DetailViewController.m in Sources */,
+				25EB10E71F3C90E800757DA4 /* PSMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

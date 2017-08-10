@@ -6,11 +6,11 @@
 //  Copyright © 2017 Zedomo. All rights reserved.
 //
 
-#import "MasterViewController.h"
-#import "DetailViewController.h"
+#import "PSCitiesViewController.h"
+#import "PSMapViewController.h"
 #import "PSCitiesDataInterface.h"
 
-@interface MasterViewController ()<UISearchBarDelegate>
+@interface PSCitiesViewController ()<UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property NSMutableArray<PSCity*> *filteredCities;
@@ -18,7 +18,7 @@
 @property (nonatomic, strong)UILabel *backgroundLabel;
 @end
 
-@implementation MasterViewController
+@implementation PSCitiesViewController
 
 static const int  BATCH_SIZE = 0;
 
@@ -66,7 +66,7 @@ static const int  BATCH_SIZE = 0;
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PSCity *city = self.filteredCities[indexPath.row];
-        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
+        PSMapViewController *controller = (PSMapViewController *)[[segue destinationViewController] topViewController];
         [controller setLocation:city.location];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
