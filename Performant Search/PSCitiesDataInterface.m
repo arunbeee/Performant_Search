@@ -63,25 +63,26 @@ static NSString *kJsonExtentsion = @"json";
 }
 
 - (void)fetcchCitiesForSearchString:(NSString*)searchString withCompletion:(void(^)(NSArray<PSCity*>*))completion{
-    __weak typeof(self)weakSelf = self;
-    
-    [self fetchCitiesFromJsonWithCompletion:^(BOOL success) {
-        if (success){
-            if (searchString && searchString.length > 0){
-            NSPredicate *cityPredicate = [NSPredicate predicateWithFormat:@"searchableName beginswith %@", [searchString lowercaseString]];
-            NSPredicate *countryPredicate = [NSPredicate predicateWithFormat:@"searchableCountry beginswith %@", [searchString lowercaseString]];
-            NSCompoundPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[cityPredicate, countryPredicate]];
-            weakSelf.filteredCities = [weakSelf.cities filteredArrayUsingPredicate:compoundPredicate];
-            } else {
-                weakSelf.filteredCities = weakSelf.cities;
+    @synchronized (self) {
+        __weak typeof(self)weakSelf = self;
+        [self fetchCitiesFromJsonWithCompletion:^(BOOL success) {
+            if (success){
+                if (searchString && searchString.length > 0){
+                    NSPredicate *cityPredicate = [NSPredicate predicateWithFormat:@"searchableName beginswith %@", [searchString lowercaseString]];
+                    NSPredicate *countryPredicate = [NSPredicate predicateWithFormat:@"searchableCountry beginswith %@", [searchString lowercaseString]];
+                    NSCompoundPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[cityPredicate, countryPredicate]];
+                    weakSelf.filteredCities = [weakSelf.cities filteredArrayUsingPredicate:compoundPredicate];
+                } else {
+                    weakSelf.filteredCities = weakSelf.cities;
+                }
+                NSSortDescriptor *citySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"searchableName" ascending:YES];
+                NSSortDescriptor *countrySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"searchableCountry" ascending:YES];
+                weakSelf.filteredCities  = [weakSelf.filteredCities sortedArrayUsingDescriptors:@[citySortDescriptor, countrySortDescriptor]];
+                weakSelf.currentBatch = 0;
+                completion([weakSelf nextBatch]);
             }
-            NSSortDescriptor *citySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"searchableName" ascending:YES];
-            NSSortDescriptor *countrySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"searchableCountry" ascending:YES];
-            weakSelf.filteredCities  = [weakSelf.filteredCities sortedArrayUsingDescriptors:@[citySortDescriptor, countrySortDescriptor]];
-            weakSelf.currentBatch = 0;
-            completion([weakSelf nextBatch]);
-        }
-    }];
+        }];
+    }
 }
 - (NSArray<PSCity*>*)nextBatch{
     NSArray *theBatch;

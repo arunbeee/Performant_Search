@@ -96,6 +96,10 @@ static const int  BATCH_SIZE = 0;
     return cell;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.searchBar resignFirstResponder];
+}
+
 #pragma mark - Search Bar
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     [self fetchDataForSearchString:searchText];
@@ -104,13 +108,13 @@ static const int  BATCH_SIZE = 0;
 #pragma mark - Helpers
 
 - (void)fetchDataForSearchString:(NSString*)searchText{
+    
     __weak typeof(self)weakSelf = self;
     [PSCitiesDataInterface sharedInstance].batchSize = BATCH_SIZE;
     [[PSCitiesDataInterface sharedInstance] fetcchCitiesForSearchString:searchText withCompletion:^(NSArray<PSCity *> *theCities) {
-        [weakSelf.filteredCities removeAllObjects];
-        [weakSelf.filteredCities addObjectsFromArray: theCities];
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [weakSelf.filteredCities removeAllObjects];
+            [weakSelf.filteredCities addObjectsFromArray: theCities];
             [weakSelf.tableView reloadData];
             if(theCities.count == 0){
                 weakSelf.backgroundLabel.text = @"No results found.";
