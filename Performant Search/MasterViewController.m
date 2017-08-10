@@ -9,7 +9,7 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "PSCitiesDataInterface.h"
-#define  BATCH_SIZE 0
+
 @interface MasterViewController ()<UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -20,6 +20,8 @@
 
 @implementation MasterViewController
 
+static const int  BATCH_SIZE = 0;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _filteredCities = [NSMutableArray new];
@@ -29,6 +31,8 @@
     self.backgroundLabel.text = @"Loading data...";
     self.backgroundLabel.textAlignment = NSTextAlignmentCenter;
     self.tableView.backgroundView =self.backgroundLabel;
+    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+    self.searchBar.hidden = YES;
 }
 
 
@@ -43,6 +47,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - IBActions
+- (IBAction)moveToTopAction:(id)sender {
+    [self.tableView setContentOffset:CGPointMake(0, -self.topLayoutGuide.length) animated:YES];
+}
 
 
 
@@ -91,12 +99,20 @@
 
 - (void)fetchDataForSearchString:(NSString*)searchText{
     __weak typeof(self)weakSelf = self;
+    
+    [PSCitiesDataInterface sharedInstance].batchSize = BATCH_SIZE;
     [[PSCitiesDataInterface sharedInstance] fetcchCitiesForSearchString:searchText withCompletion:^(NSArray<PSCity *> *theCities) {
         [weakSelf.filteredCities removeAllObjects];
         [weakSelf.filteredCities addObjectsFromArray: theCities];
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             [weakSelf.tableView reloadData];
-            weakSelf.backgroundLabel.text = @"No results found.";
+            if(theCities.count == 0){
+                weakSelf.backgroundLabel.text = @"No results found.";
+            } else{
+                weakSelf.backgroundLabel.text = @"";
+                self.searchBar.hidden = NO;
+            }
         });
         
     }];
