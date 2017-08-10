@@ -28,7 +28,7 @@ static const int  BATCH_SIZE = 0;
     NSLog(@"Loading data......");
     [self fetchDataForSearchString:@""];
     self.backgroundLabel = [[UILabel alloc]initWithFrame:self.tableView.frame];
-    self.backgroundLabel.text = @"Loading data...";
+    self.backgroundLabel.text = @"Loading cities...";
     self.backgroundLabel.textAlignment = NSTextAlignmentCenter;
     self.tableView.backgroundView =self.backgroundLabel;
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
@@ -52,6 +52,12 @@ static const int  BATCH_SIZE = 0;
     [self.tableView setContentOffset:CGPointMake(0, -self.topLayoutGuide.length) animated:YES];
 }
 
+- (IBAction)moveToLastAction:(id)sender {
+    if (self.filteredCities.count > 0){
+        NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:self.filteredCities.count - 1 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:lastIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+}
 
 
 #pragma mark - Segues
@@ -85,7 +91,7 @@ static const int  BATCH_SIZE = 0;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     PSCity *city = self.filteredCities[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@, %@",city.name, city.country];
+    cell.textLabel.text = [NSString stringWithFormat:@"%lu. %@, %@", indexPath.row + 1,city.name, city.country];
     self.lastRow = indexPath.row;
     return cell;
 }
@@ -99,7 +105,6 @@ static const int  BATCH_SIZE = 0;
 
 - (void)fetchDataForSearchString:(NSString*)searchText{
     __weak typeof(self)weakSelf = self;
-    
     [PSCitiesDataInterface sharedInstance].batchSize = BATCH_SIZE;
     [[PSCitiesDataInterface sharedInstance] fetcchCitiesForSearchString:searchText withCompletion:^(NSArray<PSCity *> *theCities) {
         [weakSelf.filteredCities removeAllObjects];
@@ -111,8 +116,9 @@ static const int  BATCH_SIZE = 0;
                 weakSelf.backgroundLabel.text = @"No results found.";
             } else{
                 weakSelf.backgroundLabel.text = @"";
-                self.searchBar.hidden = NO;
+                weakSelf.searchBar.hidden = NO;
             }
+            weakSelf.title = [NSString stringWithFormat:@"%@ (%lu)",@"Cities", theCities.count];
         });
         
     }];
