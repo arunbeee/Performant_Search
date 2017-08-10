@@ -10,33 +10,25 @@
 #import "DetailViewController.h"
 #import "PSCitiesDataInterface.h"
 #define  BATCH_SIZE 0
-@interface MasterViewController ()
+@interface MasterViewController ()<UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property NSMutableArray<PSCity*> *filteredCities;
 @property (nonatomic, assign)NSInteger lastRow;
+@property (nonatomic, strong)UILabel *backgroundLabel;
 @end
 
 @implementation MasterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    __weak typeof(self)weakSelf = self;
     _filteredCities = [NSMutableArray new];
     NSLog(@"Loading data......");
-    [PSCitiesDataInterface sharedInstance].batchSize = BATCH_SIZE;
-    [[PSCitiesDataInterface sharedInstance] fetcchCitiesForSearchString:@"" withCompletion:^(NSArray<PSCity *> *theCities) {
-        [weakSelf.filteredCities addObjectsFromArray:theCities];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.tableView reloadData];
-        });
-        NSLog(@"Total Cities:%lu", weakSelf.filteredCities.count);
-    }];
-    UILabel *backgroundLabel = [[UILabel alloc]initWithFrame:self.tableView.frame];
-    backgroundLabel.text = @"Loading data...";
-    backgroundLabel.textAlignment = NSTextAlignmentCenter;
-    self.tableView.backgroundView = backgroundLabel;
+    [self fetchDataForSearchString:@""];
+    self.backgroundLabel = [[UILabel alloc]initWithFrame:self.tableView.frame];
+    self.backgroundLabel.text = @"Loading data...";
+    self.backgroundLabel.textAlignment = NSTextAlignmentCenter;
+    self.tableView.backgroundView =self.backgroundLabel;
 }
 
 
@@ -90,5 +82,24 @@
     return cell;
 }
 
+#pragma mark - Search Bar
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    [self fetchDataForSearchString:searchText];
+}
 
+#pragma mark - Helpers
+
+- (void)fetchDataForSearchString:(NSString*)searchText{
+    __weak typeof(self)weakSelf = self;
+    [[PSCitiesDataInterface sharedInstance] fetcchCitiesForSearchString:searchText withCompletion:^(NSArray<PSCity *> *theCities) {
+        [weakSelf.filteredCities removeAllObjects];
+        [weakSelf.filteredCities addObjectsFromArray: theCities];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.tableView reloadData];
+            weakSelf.backgroundLabel.text = @"No results found.";
+        });
+        
+    }];
+
+}
 @end

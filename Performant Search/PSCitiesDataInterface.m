@@ -66,8 +66,8 @@ static NSString *kJsonExtentsion = @"json";
     [self fetchCitiesFromJsonWithCompletion:^(BOOL success) {
         if (success){
             if (searchString && searchString.length > 0){
-            NSPredicate *cityPredicate = [NSPredicate predicateWithFormat:@"searchableName beginswith %@", searchString];
-            NSPredicate *countryPredicate = [NSPredicate predicateWithFormat:@"searchableCountry beginswith %@", searchString];
+            NSPredicate *cityPredicate = [NSPredicate predicateWithFormat:@"searchableName beginswith %@", [searchString lowercaseString]];
+            NSPredicate *countryPredicate = [NSPredicate predicateWithFormat:@"searchableCountry beginswith %@", [searchString lowercaseString]];
             NSCompoundPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[cityPredicate, countryPredicate]];
             weakSelf.filteredCities = [weakSelf.cities filteredArrayUsingPredicate:compoundPredicate];
             } else {
