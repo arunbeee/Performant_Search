@@ -7,8 +7,9 @@
 //
 
 #import "DetailViewController.h"
-
+#import <MapKit/MapKit.h>
 @interface DetailViewController ()
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -16,8 +17,8 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+    if (self.location) {
+        [self.mapView setCenterCoordinate:self.location.coordinate animated:YES];
     }
 }
 
@@ -37,14 +38,11 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(NSDate *)newDetailItem {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-        
-        // Update the view.
+- (void)setLocation:(CLLocation *)location{
+    if (![_location isEqual:location]){
+        _location = location;
         [self configureView];
     }
 }
-
 
 @end
