@@ -116,8 +116,7 @@
 		25EB11051F3CD7FB00757DA4 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				25EB10E51F3C90E800757DA4 /* PSMapViewController.h */,
-				25EB10E61F3C90E800757DA4 /* PSMapViewController.m */,
+				25EB11091F3CD92F00757DA4 /* ViewControllers */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -145,6 +144,15 @@
 			children = (
 				25EB10E21F3C90E700757DA4 /* PSCitiesViewController.h */,
 				25EB10E31F3C90E800757DA4 /* PSCitiesViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		25EB11091F3CD92F00757DA4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				25EB10E51F3C90E800757DA4 /* PSMapViewController.h */,
+				25EB10E61F3C90E800757DA4 /* PSMapViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

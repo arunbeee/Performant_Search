@@ -22,8 +22,8 @@
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.location.coordinate, 10000, 10000);
         MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
         [self.mapView setRegion:adjustedRegion animated:YES];
-        [self.mapView addAnnotation:[[MKPlacemark alloc] initWithCoordinate:self.location.coordinate]];
-        
+        [self.mapView addAnnotation:[[MKPlacemark alloc] initWithCoordinate:self.location.coordinate
+                                                          addressDictionary:nil]];
         
     }
 }
