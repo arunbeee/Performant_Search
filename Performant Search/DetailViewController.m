@@ -19,6 +19,12 @@
     // Update the user interface for the detail item.
     if (self.location) {
         [self.mapView setCenterCoordinate:self.location.coordinate animated:YES];
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.location.coordinate, 10000, 10000);
+        MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
+        [self.mapView setRegion:adjustedRegion animated:YES];
+        [self.mapView addAnnotation:[[MKPlacemark alloc] initWithCoordinate:self.location.coordinate]];
+        
+        
     }
 }
 
@@ -26,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [self.mapView setZoomEnabled:YES];
     [self configureView];
 }
 

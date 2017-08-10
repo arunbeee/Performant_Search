@@ -14,6 +14,7 @@
 @property (nonatomic, strong)NSString *name;
 @property (nonatomic, strong)NSString *country;
 @property (nonatomic, strong)CLLocation *location;
-
+@property (nonatomic, strong)NSString *searchableName;
+@property (nonatomic, strong)NSString *searchableCountry;
 +(PSCity*)fromJson:(NSDictionary*)json;
 @end

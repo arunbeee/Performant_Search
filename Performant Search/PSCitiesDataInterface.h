@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "PSCity.h"
 @interface PSCitiesDataInterface : NSObject
-- (NSArray<PSCity*>*)fetchCitiesFromJson;
-- (void)fetchCitiesFromJsonWithCompletion:(void(^)(NSArray<PSCity*>*))completion;
+@property (nonatomic, assign)NSInteger batchSize; //Should be a positive integer . 0 will return all the objects. Default is 0
++ (instancetype)sharedInstance;
+- (NSArray<PSCity*>*)nextBatch; // Sends next batch if `batchSize` is greater than 0
+- (void)fetchCitiesFromJsonWithCompletion:(void(^)(BOOL))success;
+- (void)fetcchCitiesForSearchString:(NSString*)searchString withCompletion:(void(^)(NSArray<PSCity*>*))completion;
+- (instancetype)init NS_UNAVAILABLE ;
+
 @end

@@ -118,7 +118,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="Cities" id="Zdf-7t-Un8"/>
                     <connections>
                         <outlet property="searchBar" destination="2MW-uf-FpK" id="Yg5-7F-CoD"/>
                     </connections>

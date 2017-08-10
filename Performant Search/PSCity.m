@@ -25,6 +25,8 @@ static const NSString *kLatKey = @"lat";
     double latitude = [coordinates[kLatKey] doubleValue];
     double longitude = [coordinates[kLonKey] doubleValue];
     theCity.location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
+    theCity.searchableName = [theCity.name lowercaseString];
+    theCity.searchableCountry = [theCity.searchableCountry lowercaseString];
     return theCity;
 }
 @end
