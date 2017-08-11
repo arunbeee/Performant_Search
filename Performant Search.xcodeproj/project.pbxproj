@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25633BE41F3DCF190068878E /* Performant_SearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25633BE31F3DCF190068878E /* Performant_SearchTests.m */; };
 		25EB10DE1F3C90E700757DA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EB10DD1F3C90E700757DA4 /* main.m */; };
 		25EB10E11F3C90E700757DA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EB10E01F3C90E700757DA4 /* AppDelegate.m */; };
 		25EB10E41F3C90E800757DA4 /* PSCitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EB10E31F3C90E800757DA4 /* PSCitiesViewController.m */; };
@@ -20,7 +21,20 @@
 		25EB11031F3C9A2500757DA4 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 25EB11021F3C9A2500757DA4 /* cities.json */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		25633BE61F3DCF190068878E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25EB10D11F3C90E700757DA4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 25EB10D81F3C90E700757DA4;
+			remoteInfo = "Performant Search";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		25633BE11F3DCF180068878E /* Performant SearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Performant SearchTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		25633BE31F3DCF190068878E /* Performant_SearchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Performant_SearchTests.m; sourceTree = "<group>"; };
+		25633BE51F3DCF190068878E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25EB10D91F3C90E700757DA4 /* Performant Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Performant Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EB10DD1F3C90E700757DA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		25EB10DF1F3C90E700757DA4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -42,6 +56,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		25633BDE1F3DCF180068878E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		25EB10D61F3C90E700757DA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -53,10 +74,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25633BE21F3DCF190068878E /* Performant SearchTests */ = {
+			isa = PBXGroup;
+			children = (
+				25633BE31F3DCF190068878E /* Performant_SearchTests.m */,
+				25633BE51F3DCF190068878E /* Info.plist */,
+			);
+			path = "Performant SearchTests";
+			sourceTree = "<group>";
+		};
 		25EB10D01F3C90E700757DA4 = {
 			isa = PBXGroup;
 			children = (
 				25EB10DB1F3C90E700757DA4 /* Performant Search */,
+				25633BE21F3DCF190068878E /* Performant SearchTests */,
 				25EB10DA1F3C90E700757DA4 /* Products */,
 				25EB10FC1F3C938D00757DA4 /* Frameworks */,
 			);
@@ -66,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				25EB10D91F3C90E700757DA4 /* Performant Search.app */,
+				25633BE11F3DCF180068878E /* Performant SearchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,6 +192,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		25633BE01F3DCF180068878E /* Performant SearchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25633BEA1F3DCF190068878E /* Build configuration list for PBXNativeTarget "Performant SearchTests" */;
+			buildPhases = (
+				25633BDD1F3DCF180068878E /* Sources */,
+				25633BDE1F3DCF180068878E /* Frameworks */,
+				25633BDF1F3DCF180068878E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				25633BE71F3DCF190068878E /* PBXTargetDependency */,
+			);
+			name = "Performant SearchTests";
+			productName = "Performant SearchTests";
+			productReference = 25633BE11F3DCF180068878E /* Performant SearchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		25EB10D81F3C90E700757DA4 /* Performant Search */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25EB10F31F3C90E800757DA4 /* Build configuration list for PBXNativeTarget "Performant Search" */;
@@ -186,6 +236,12 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Zedomo;
 				TargetAttributes = {
+					25633BE01F3DCF180068878E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 4YNKDFHEBU;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 25EB10D81F3C90E700757DA4;
+					};
 					25EB10D81F3C90E700757DA4 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 4YNKDFHEBU;
@@ -207,11 +263,19 @@
 			projectRoot = "";
 			targets = (
 				25EB10D81F3C90E700757DA4 /* Performant Search */,
+				25633BE01F3DCF180068878E /* Performant SearchTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		25633BDF1F3DCF180068878E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		25EB10D71F3C90E700757DA4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,6 +290,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		25633BDD1F3DCF180068878E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25633BE41F3DCF190068878E /* Performant_SearchTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		25EB10D51F3C90E700757DA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,6 +312,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		25633BE71F3DCF190068878E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 25EB10D81F3C90E700757DA4 /* Performant Search */;
+			targetProxy = 25633BE61F3DCF190068878E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		25EB10E81F3C90E800757DA4 /* Main.storyboard */ = {
@@ -261,6 +341,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		25633BE81F3DCF190068878E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4YNKDFHEBU;
+				INFOPLIST_FILE = "Performant SearchTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zedomo.Performant-SearchTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Performant Search.app/Performant Search";
+			};
+			name = Debug;
+		};
+		25633BE91F3DCF190068878E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4YNKDFHEBU;
+				INFOPLIST_FILE = "Performant SearchTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zedomo.Performant-SearchTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Performant Search.app/Performant Search";
+			};
+			name = Release;
+		};
 		25EB10F11F3C90E800757DA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -382,6 +488,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		25633BEA1F3DCF190068878E /* Build configuration list for PBXNativeTarget "Performant SearchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25633BE81F3DCF190068878E /* Debug */,
+				25633BE91F3DCF190068878E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		25EB10D41F3C90E700757DA4 /* Build configuration list for PBXProject "Performant Search" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

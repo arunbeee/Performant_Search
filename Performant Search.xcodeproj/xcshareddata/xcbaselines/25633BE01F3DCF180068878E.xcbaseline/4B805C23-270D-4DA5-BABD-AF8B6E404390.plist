@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>classNames</key>
+	<dict>
+		<key>Performant_SearchTests</key>
+		<dict>
+			<key>testForConsecutiveSearch</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>6.6736e-06</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>11-Aug-2017, 5:52:20 PM</string>
+				</dict>
+			</dict>
+			<key>testForEmptyInput</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>9.3688e-06</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>11-Aug-2017, 5:52:20 PM</string>
+				</dict>
+			</dict>
+			<key>testForMultipleCharacterResults</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>6.5122e-06</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>11-Aug-2017, 5:52:20 PM</string>
+				</dict>
+			</dict>
+			<key>testForNoInput</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>5.1866e-06</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>11-Aug-2017, 5:56:19 PM</string>
+				</dict>
+			</dict>
+			<key>testForNoResults</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>1.0599e-05</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>11-Aug-2017, 5:52:20 PM</string>
+				</dict>
+			</dict>
+			<key>testForParticularCity</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>4.8623e-06</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>11-Aug-2017, 5:56:19 PM</string>
+				</dict>
+			</dict>
+			<key>testForSingleCharacterResults</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>6.8347e-06</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>11-Aug-2017, 5:52:20 PM</string>
+				</dict>
+			</dict>
+			<key>testPerformanceExample</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>5.5638e-06</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>
