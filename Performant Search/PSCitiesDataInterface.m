@@ -38,23 +38,28 @@ static NSString *kJsonExtentsion = @"json";
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         if (weakSelf.cities.count == 0){
             NSMutableArray<PSCity*> *cities = [NSMutableArray new];
-            NSData *jsonData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:kJsonFile withExtension:kJsonExtentsion]];
-            NSError *error;
-            NSArray *citiesJsonObjects = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
-            @autoreleasepool {
-                for (NSDictionary *cityJson in citiesJsonObjects){
-                    PSCity *city = [PSCity fromJson:cityJson];
-                    if (city){
-                        [cities addObject:city];
+            NSURL *fileURL = [[NSBundle mainBundle] URLForResource:kJsonFile withExtension:kJsonExtentsion];
+            if (fileURL){
+                NSData *jsonData = [NSData dataWithContentsOfURL:fileURL];
+                NSError *error;
+                NSArray *citiesJsonObjects = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
+                @autoreleasepool {
+                    for (NSDictionary *cityJson in citiesJsonObjects){
+                        PSCity *city = [PSCity fromJson:cityJson];
+                        if (city){
+                            [cities addObject:city];
+                        }
                     }
+                    
+                    weakSelf.cities = (NSArray*)cities;
                 }
-                
-                weakSelf.cities = (NSArray*)cities;
-            }
-            if (error){
-                success(NO);
+                if (error){
+                    success(NO);
+                } else {
+                    success(YES);
+                }
             } else {
-                success(YES);
+                success(NO);
             }
         } else {
             success(YES);
@@ -80,6 +85,8 @@ static NSString *kJsonExtentsion = @"json";
                 weakSelf.filteredCities  = [weakSelf.filteredCities sortedArrayUsingDescriptors:@[citySortDescriptor, countrySortDescriptor]];
                 weakSelf.currentBatch = 0;
                 completion([weakSelf nextBatch]);
+            } else {
+                completion(@[]);
             }
         }];
     }
